@@ -60,7 +60,7 @@
         // location of the feature, with description HTML from its properties.
         map.on('click', csvSourceName, (e) => {
             const coordinates = e.features[0].geometry.coordinates.slice();
-            const description = "Profile: <a target=_blank href='https://isis.isric.org/monoliths/reference-soil-"+e.features[0].properties.profile_code+"'>"+e.features[0].properties.profile_code+"</a><br/>Soil class: "+e.features[0].properties.classification;
+            const description = "Profile: <a href='https://isis.isric.org/monoliths/reference-soil-"+e.features[0].properties.profile_code+"'>"+e.features[0].properties.profile_code+"</a><br/>Soil class: <a href='https://www.isric.org/explore/world-soil-distribution/"+e.features[0].properties.classification.toLowerCase()+"s'>"+e.features[0].properties.classification+"</a>";
 
             // Ensure that if the map is zoomed out such that multiple
             // copies of the feature are visible, the popup appears
