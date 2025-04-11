@@ -24,6 +24,9 @@
 
 
 <script>
+
+    inMuseum = "NL049,NL052,NL059,NL006,NL030,NL014,NL013,NL011,NL001,NL005,NL016,NL029,NL021,BR012,NL039,NL042,NL042,NL037,NL058,GL001,GL006,GL003,ZA016,CN040,CU016,CN039,GM045,SE017,FR011,IT018,GR003,ZA011,CU015,CN014,US014,IN011,US011,NG008,BR026,BR007,EC004,IN009,PE06,ID047,PE005,BR029,UY001,RO007,FI06,DE006,PE018,NO001,ID016,JO001,ES011,DE010,NA001,NA009,IT011,IC001,EC002,ID029,JM007,PH004,DE014,KE017,IN005,CN026,WS003,ES012,NL020,NL041,NL043,TH001,JP001,CN003,ES999,ZM001,ZM010,ID039,BR013,FI003"
+
     maplibregl.addProtocol('csv', VectorTextProtocol.VectorTextProtocol);
     const map = new maplibregl.Map({
         container: 'map',
@@ -61,7 +64,10 @@
         // location of the feature, with description HTML from its properties.
         map.on('click', csvSourceName, (e) => {
             const coordinates = e.features[0].geometry.coordinates.slice();
-            const description = "Profile: <a href='https://isis.isric.org/monoliths/reference-soil-"+e.features[0].properties.profile_code+"'>"+e.features[0].properties.profile_code+"</a><br/>Soil class: <a href='https://www.isric.org/explore/world-soil-distribution/"+e.features[0].properties.classification.toLowerCase()+"s'>"+e.features[0].properties.classification+"</a><br/><br/><img src='https://www.isric.org/isric/webdocs/images/webpics/isric_"+e.features[0].properties.img+".jpg' style='width:120px'>";
+            const description = "Profile: <a href='https://isis.isric.org/monoliths/reference-soil-"+e.features[0].properties.profile_code+"'>"+
+                e.features[0].properties.profile_code+"</a><br/>Soil class: <a href='https://www.isric.org/explore/world-soil-distribution/"+
+                e.features[0].properties.classification.toLowerCase()+"s'>"+e.features[0].properties.classification+"</a><br/>Storage: "+
+                (inMuseum.indexOf(e.features[0].properties.profile_code)>-1?"Museum":"Storage")+"<br/><br/><img src='https://www.isric.org/isric/webdocs/images/webpics/isric_"+e.features[0].properties.img+".jpg' style='width:120px'>";
 
             // Ensure that if the map is zoomed out such that multiple
             // copies of the feature are visible, the popup appears
